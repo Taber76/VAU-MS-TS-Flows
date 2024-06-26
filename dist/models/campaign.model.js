@@ -190,7 +190,7 @@ class CampaignModel {
             const updateCampaign = `
       UPDATE campaigns
       SET ${fields.join(', ')}
-      WHERE id = :id, user_id = :user_id`;
+      WHERE id = :id AND user_id = :user_id`;
             params.id = campaign.id;
             params.user_id = campaign.user_id;
             try {
