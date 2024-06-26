@@ -190,8 +190,9 @@ class CampaignModel {
             const updateCampaign = `
       UPDATE campaigns
       SET ${fields.join(', ')}
-      WHERE id = :id`;
+      WHERE id = :id, user_id = :user_id`;
             params.id = campaign.id;
+            params.user_id = campaign.user_id;
             try {
                 const result = yield ((_a = this.connection) === null || _a === void 0 ? void 0 : _a.execute(updateCampaign, params));
                 yield ((_b = this.connection) === null || _b === void 0 ? void 0 : _b.commit());

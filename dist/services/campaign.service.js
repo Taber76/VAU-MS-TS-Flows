@@ -64,5 +64,22 @@ class CampaignService {
             }
         });
     }
+    // UPDATE -------------------------------------------------------------------
+    static update(campaign) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                if (!campaign.id)
+                    return { success: false, message: 'Missing required fields.' };
+                const updatedCampaign = yield campaign_model_1.default.update(campaign);
+                if (!updatedCampaign)
+                    return { success: false, message: 'Campaign not found or user not authorized.' };
+                return { success: true, message: 'Campaign updated successfully.', campaign: updatedCampaign };
+            }
+            catch (error) {
+                console.error('Error updating campaign:', error);
+                return { success: false, message: `Internal server error updating campaign. Error: ${error}` };
+            }
+        });
+    }
 }
 exports.default = CampaignService;

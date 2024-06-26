@@ -20,8 +20,7 @@ passport_1.default.use('userJWT', new passport_jwt_1.Strategy({
     secretOrKey: environment_1.JWT_SECRET
 }, (payload, done) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user_id = payload.id ? payload.id : payload.id;
-        return done(null, user_id !== null ? user_id : false);
+        return done(null, payload.id ? payload.id : false);
     }
     catch (error) {
         return done(error, false);

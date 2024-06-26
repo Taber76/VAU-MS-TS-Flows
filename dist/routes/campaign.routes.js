@@ -10,5 +10,6 @@ const auth_mid_1 = __importDefault(require("../middlewares/auth.mid"));
 exports.default = express_1.default
     .Router()
     .post("/new", auth_mid_1.default.authenticate("userJWT", { session: false }), campaign_controller_1.default.newCampaign)
+    .put("/update", auth_mid_1.default.authenticate("userJWT", { session: false }), campaign_controller_1.default.update)
     .get("/get-all", auth_mid_1.default.authenticate("userJWT", { session: false }), campaign_controller_1.default.getCampaignsByUserId)
     .get("/get/:id", auth_mid_1.default.authenticate("userJWT", { session: false }), campaign_controller_1.default.getCampaignById);

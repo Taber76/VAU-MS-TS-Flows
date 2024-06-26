@@ -178,9 +178,10 @@ class CampaignModel {
     const updateCampaign = `
       UPDATE campaigns
       SET ${fields.join(', ')}
-      WHERE id = :id`;
+      WHERE id = :id, user_id = :user_id`;
 
     params.id = campaign.id;
+    params.user_id = campaign.user_id;
 
     try {
       const result = await this.connection?.execute(updateCampaign, params);
@@ -211,6 +212,8 @@ class CampaignModel {
       }
     }
   }
+
+
 }
 
 export default CampaignModel.getInstance();

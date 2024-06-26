@@ -12,8 +12,7 @@ passport.use(
     },
     async (payload: User, done: any) => {
       try {
-        const user_id = payload.id ? payload.id : payload.id
-        return done(null, user_id !== null ? user_id : false)
+        return done(null, payload.id ? payload.id : false)
       } catch (error) {
         return done(error, false);
       }

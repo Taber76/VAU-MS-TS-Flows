@@ -48,5 +48,18 @@ export default class CampaignService {
     }
   }
 
+  // UPDATE -------------------------------------------------------------------
+  public static async update(campaign: Partial<Campaign>) {
+    try {
+      if (!campaign.id) return { success: false, message: 'Missing required fields.' }
+      const updatedCampaign = await campaignModelInstance.update(campaign);
+      if (!updatedCampaign) return { success: false, message: 'Campaign not found or user not authorized.' }
+      return { success: true, message: 'Campaign updated successfully.', campaign: updatedCampaign };
+    } catch (error) {
+      console.error('Error updating campaign:', error);
+      return { success: false, message: `Internal server error updating campaign. Error: ${error}` };
+    }
+  }
+
 
 }

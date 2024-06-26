@@ -59,5 +59,20 @@ class CampaignController {
             }
         });
     }
+    static update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const serviceResponse = yield campaign_service_1.default.update(Object.assign(Object.assign({}, req.body), { user_id: req.user }));
+                if (serviceResponse.success === false) {
+                    res.status(400).json(serviceResponse);
+                    return;
+                }
+                res.status(200).json(serviceResponse);
+            }
+            catch (error) {
+                res.status(500).json({ error });
+            }
+        });
+    }
 }
 exports.default = CampaignController;

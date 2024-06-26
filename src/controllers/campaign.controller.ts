@@ -42,4 +42,17 @@ export default class CampaignController {
     }
   }
 
+  public static async update(req: Request, res: Response) {
+    try {
+      const serviceResponse = await CampaignService.update({ ...req.body, user_id: req.user });
+      if (serviceResponse.success === false) {
+        res.status(400).json(serviceResponse);
+        return;
+      }
+      res.status(200).json(serviceResponse);
+    } catch (error) {
+      res.status(500).json({ error });
+    }
+  }
+
 }
